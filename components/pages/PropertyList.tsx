@@ -65,7 +65,7 @@ export default function PropertyList() {
           placeholder="Search..."
         />
         <div className="flex gap-2 items-center">
-          <p className="text-gray-500 basis-1/5">Min:</p>
+          <p className="text-gray-500 basis-1/5">Min $:</p>
           <input
             className="border border-1 rounded-md p-2 grow focus:ring-blue-500 focus:ring-1 focus:outline-none focus:border[#0A84FF] focus:ring-1 focus:ring-[#0A84FF] transition duration-300"
             type="number"
@@ -75,7 +75,7 @@ export default function PropertyList() {
           />
         </div>
         <div className="flex gap-2 items-center">
-          <p className="text-gray-500 basis-1/5">Max:</p>
+          <p className="text-gray-500 basis-1/5">Max $:</p>
           <input
             className="border border-1 rounded-md p-2 grow focus:ring-blue-500 focus:ring-1 focus:outline-none focus:border[#0A84FF] focus:ring-1 focus:ring-[#0A84FF] transition duration-300"
             type="number"
