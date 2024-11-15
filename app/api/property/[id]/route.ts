@@ -10,10 +10,15 @@ export async function GET(
   try {
     const propertyId = Number(id);
 
+    // if id is not number throw error
     if (isNaN(propertyId)) {
       return NextResponse.json({ message: "Invalid ID" }, { status: 400 });
     }
+
+    // find property with id
     const property = data.find((property) => property.id == propertyId);
+
+    // if property is undefined, throw error
     if (property) {
       return NextResponse.json({ data: property }, { status: 200 });
     } else {

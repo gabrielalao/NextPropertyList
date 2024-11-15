@@ -51,6 +51,10 @@ export default function PropertyList() {
     loadPropertyList();
   }, [currentPage]);
 
+  useEffect(() => {
+    loadPropertyList();
+  }, []);
+
   return (
     <div className="flex flex-col lg:flex-row gap-4 p-8 w-full">
       <div className="flex flex-col p-8 gap-4 border border-1 rounded-md lg:w-1/4 w-full">
@@ -61,7 +65,7 @@ export default function PropertyList() {
           placeholder="Search..."
         />
         <div className="flex gap-2 items-center">
-          <p className="text-gray-500">Min:</p>
+          <p className="text-gray-500 basis-1/5">Min:</p>
           <input
             className="border border-1 rounded-md p-2 grow focus:ring-blue-500 focus:ring-1 focus:outline-none focus:border[#0A84FF] focus:ring-1 focus:ring-[#0A84FF] transition duration-300"
             type="number"
@@ -71,7 +75,7 @@ export default function PropertyList() {
           />
         </div>
         <div className="flex gap-2 items-center">
-          <p className="text-gray-500">Max:</p>
+          <p className="text-gray-500 basis-1/5">Max:</p>
           <input
             className="border border-1 rounded-md p-2 grow focus:ring-blue-500 focus:ring-1 focus:outline-none focus:border[#0A84FF] focus:ring-1 focus:ring-[#0A84FF] transition duration-300"
             type="number"
@@ -101,7 +105,7 @@ export default function PropertyList() {
       </div>
       <div className="flex flex-col gap-4 border border-1 rounded-md lg:w-3/4 w-full relative">
         <div className="flex flex-col gap-4 p-8">
-          <div className="flex justify-between">
+          <div className="flex flex-col items-end gap-2 lg:flex-row justify-between">
             <NumberPerPage
               perPage={numberPerPage}
               onChanged={setNumberPerPage}
@@ -118,7 +122,7 @@ export default function PropertyList() {
                 <p className="text-gray-600 text-lg">No properties</p>
               </div>
             ) : (
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 ">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 ">
                 {data?.map((property, index) => (
                   <PropertyCard property={property} key={index} />
                 ))}

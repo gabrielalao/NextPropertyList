@@ -37,7 +37,7 @@ export default function RootLayout({
       >
         <div className="flex flex-col items-center">
           <div className="w-full h-24 shadow-md flex justify-center items-center">
-            <div className="max-w-[1440px] w-full">
+            <div className="max-w-[1440px] w-full px-8">
               <Link href="/" className="font-bold text-[24px] text-[#0A84FF]">
                 Property Listing App
               </Link>

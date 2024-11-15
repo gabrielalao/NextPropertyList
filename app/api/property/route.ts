@@ -6,12 +6,13 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 export async function GET(request: NextRequest) {
   const url = new URL(request.url);
 
-  const perPage = Number(url.searchParams.get("perPage")) || 10;
-  const filter = url.searchParams.get("filter") || "";
-  const page = Number(url.searchParams.get("page")) || 1;
-  const minPrice = Number(url.searchParams.get("min")) || -1;
-  const maxPrice = Number(url.searchParams.get("max")) || -1;
-  const type = url.searchParams.get("type") || "";
+  // Get query parameters for filtering
+  const perPage = Number(url.searchParams.get("perPage")) || 10; // Property count per page
+  const filter = url.searchParams.get("filter") || ""; // Search string
+  const page = Number(url.searchParams.get("page")) || 1; // Current page
+  const minPrice = Number(url.searchParams.get("min")) || -1; // Filter min price
+  const maxPrice = Number(url.searchParams.get("max")) || -1; // Filter max price
+  const type = url.searchParams.get("type") || ""; // Filter by type
 
   let numPerPage = 10;
 
@@ -24,6 +25,7 @@ export async function GET(request: NextRequest) {
 
     let filteredProperties: Property[];
 
+    // If search string is not empty, filter by address
     if (filter.length === 0) {
       filteredProperties = properties;
     } else {
@@ -32,6 +34,7 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    // If minPrice or maxPrice is set, filter properties by price
     if (minPrice !== -1) {
       filteredProperties = filteredProperties.filter((property) => {
         return property.price >= minPrice;
@@ -44,19 +47,23 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    // If type is set, filter by types
     if (type.length !== 0) {
       filteredProperties = filteredProperties.filter((property) => {
         return property.type === type;
       });
     }
 
+    // Get properties for the page
     const result = filteredProperties.slice(
       (page - 1) * numPerPage,
       page * numPerPage
     );
 
+    // Calculate total page count
     const totalPages = Math.floor(filteredProperties.length / numPerPage);
 
+    // Delay for UI effect.
     await delay(1000);
 
     return NextResponse.json(
