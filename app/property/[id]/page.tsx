@@ -4,7 +4,7 @@ import React from "react";
 export default async function DetailPage({
   params,
 }: {
-  params: { id: number };
+  params: Promise<{ id: number }>;
 }) {
   const { id } = await params;
 
