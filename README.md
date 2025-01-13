@@ -1,4 +1,4 @@
-# Voxtur Assignment - Property Listing App
+
 
 This project is a Next.js application to display a list of properties, allow for search and filtering, and provide a detail view for each property using the provided JSON data.
 
